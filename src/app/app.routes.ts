@@ -14,7 +14,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./features/app-routes').then((m) => m.routes),
+        loadChildren: () => import('@@home').then((m) => m.routes),
       },
     ],
   },

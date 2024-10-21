@@ -2,13 +2,15 @@
   {
     "name": "HOME",
     "icon": "",
-    "path": "/home",
-    "selected": false
-  },
-  {
-    "name": "HOME2",
-    "icon": "",
-    "path": "/home2",
-    "selected": false
+    "path": "",
+    "selected": false,
+    "subMenus": [
+      {
+        "name": "DEMO",
+        "path": "/demo",
+        "selected": false,
+        "icon": ""
+      }
+    ]
   }
 ]

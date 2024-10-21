@@ -1,0 +1,37 @@
+<div class="my-3">
+  <button
+    pButton
+    pRipple
+    class="mr-2"
+    label="Search"
+    (click)="getData()"
+  ></button>
+  <button
+    pButton
+    pRipple
+    [outlined]="true"
+    label="Reset"
+    (click)="this.data = []"
+  ></button>
+</div>
+
+<p-table
+  [value]="data"
+  [columns]="tableColumns"
+  styleClass="p-datatable-gridlines"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <ng-container *ngFor="let column of columns">
+        <th>{{ column.header }}</th>
+      </ng-container>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <ng-container *ngFor="let column of columns">
+        <td>{{ rowData[column.field] }}</td>
+      </ng-container>
+    </tr>
+  </ng-template>
+</p-table>

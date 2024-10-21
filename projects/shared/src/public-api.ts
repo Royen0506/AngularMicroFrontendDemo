@@ -10,3 +10,4 @@ export * from './lib/services/navigation.service';
 export * from './lib/services/storage.service';
 export * from './lib/services/system-confirmation.service';
 export * from './lib/services/system-message.service';
+export * from './lib/services/api.service';
