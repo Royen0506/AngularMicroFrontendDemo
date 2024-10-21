@@ -1,0 +1,165 @@
+<div class="bpaas-layout-sidebar">
+  <p-sidebar
+    [(visible)]="sidebarVisible"
+    [closeOnEscape]="false"
+    [dismissible]="false"
+    [modal]="false"
+    (onHide)="hideSidebar()"
+  >
+    <!-- 只是為了留下我修改的過程，這個是本來寫死的選單
+    <div class="bpaas-layout-sidemenu">
+      <button type="button" class="bpaas-layout-sidemenu-item category">
+        <div>分類</div>
+      </button>
+      <button type="button" class="bpaas-layout-sidemenu-item" >
+        <div>功能連結 1</div>
+      </button>
+      <button type="button" class="bpaas-layout-sidemenu-item collapsed">
+        <div>父功能分類</div>
+        <i class="pi pi-angle-right"></i>
+      </button>
+      <div class="bpaas-layout-sidemenu-sub">
+        <button type="button" class="bpaas-layout-sidemenu-item" >
+          <div>子功能連結 1</div>
+        </button>
+        <button type="button" class="bpaas-layout-sidemenu-item collapsed" >
+          <div>子功能分類</div>
+          <i class="pi pi-angle-right"></i>
+        </button>
+        <div class="bpaas-layout-sidemenu-sub">
+          <button type="button" class="bpaas-layout-sidemenu-item" >
+            <div>孫功能連結</div>
+          </button>
+        </div>
+        <button type="button" class="bpaas-layout-sidemenu-item" >
+          <div>子功能連結 2</div>
+        </button>
+      </div>
+      <button type="button" class="bpaas-layout-sidemenu-item" >
+        <div>功能連結 2</div>
+      </button>
+    </div>
+    -->
+
+    <div class="bpaas-layout-sidemenu">
+      <!-- 如果用這邊也用 *ngTemplateOutlet 寫，
+      會發生 NG5002: Can't have multiple template bindings on one element.
+      Use only one attribute prefixed with *，
+      所以改用 [ngTemplateOutlet] 和 [ngTemplateOutletContext] -->
+      <ng-container
+        *ngFor="let item of menuData"
+        [ngTemplateOutlet]="tMenuItem"
+        [ngTemplateOutletContext]="{ pMenuItem: item }"
+      >
+      </ng-container>
+    </div>
+  </p-sidebar>
+</div>
+
+<!-- 這個在產生選單的選項按鈕 -->
+<ng-template #tMenuItem let-menuItem="pMenuItem">
+  <ng-container *ngIf="!menuItem.path || menuItem.path == ''">
+    <a
+      class="bpaas-layout-sidemenu-item"
+      pRipple
+      [class.category]="!menuItem.subMenus"
+      [class.collapsed]="menuItem.subMenus"
+      (click)="
+        menuItem.selected = !menuItem.selected;
+        sidebarVisible = menuItem.subMenus || !layoutMain.mobileMode
+      "
+    >
+      <div>
+        <em class="pi {{ menuItem.icon }}" *ngIf="menuItem.icon"></em>
+        {{ menuItem.name }}
+      </div>
+      <em
+        *ngIf="menuItem.subMenus"
+        class="pi"
+        [ngClass]="{
+          'pi-angle-right': !menuItem.selected,
+          'pi-angle-down': menuItem.selected,
+        }"
+      ></em>
+    </a>
+  </ng-container>
+
+  <!-- 網址不是 https:// 和 http:// 開頭代表是自己內部的網址 -->
+  <ng-container
+    *ngIf="
+      menuItem.path &&
+      menuItem.path != '' &&
+      !menuItem.path.startsWith('https://') &&
+      !menuItem.path.startsWith('http://')
+    "
+  >
+    <a
+      class="bpaas-layout-sidemenu-item"
+      pRipple
+      routerLink="{{ menuItem.path }}"
+      routerLinkActive="bpaas-router-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="
+        menuItem.selected = !menuItem.selected;
+        sidebarVisible = menuItem.subMenus || !layoutMain.mobileMode;
+        setSessionMenuId(menuItem.id)
+      "
+    >
+      <div>
+        <em class="pi {{ menuItem.icon }}" *ngIf="menuItem.icon"></em>
+        {{ menuItem.name }}
+      </div>
+    </a>
+  </ng-container>
+
+  <!-- 網址是 https:// 或 http:// 開頭代表是外部的網址 -->
+  <ng-container
+    *ngIf="
+      menuItem.path &&
+      menuItem.path != '' &&
+      (menuItem.path.startsWith('https://') ||
+        menuItem.path.startsWith('http://'))
+    "
+  >
+    <a
+      class="bpaas-layout-sidemenu-item"
+      pRipple
+      href="{{ menuItem.path }}"
+      target="_blank"
+      (click)="sidebarVisible = !layoutMain.mobileMode"
+    >
+      <div>
+        <em class="pi {{ menuItem.icon }}" *ngIf="menuItem.icon"></em>
+        {{ menuItem.name }}
+      </div>
+    </a>
+  </ng-container>
+
+  <!-- 只是為了留下我修改的過程，這行等於下面那行的效果
+  <ng-container [ngTemplateOutlet]="tSubMenu" [ngTemplateOutletContext]="{subMenus:menuItem.subMenus}">
+  </ng-container>
+  -->
+  <ng-container
+    *ngTemplateOutlet="
+      tSubMenu;
+      context: { pSubMenus: menuItem.subMenus, pParentMenuItem: menuItem }
+    "
+  >
+  </ng-container>
+</ng-template>
+
+<!-- 這個在產生子選單，let-menuItem let-後面的值是這個 template 可以用的變數名稱，等號後面是要傳進來的物件名稱 -->
+<ng-template #tSubMenu let-menuItem="pParentMenuItem" let-subMenus="pSubMenus">
+  <div
+    class="bpaas-layout-sidemenu-sub"
+    *ngIf="subMenus"
+    [ngStyle]="{ display: menuItem.selected ? 'block' : 'none' }"
+  >
+    <ng-container
+      *ngFor="let subMenuItem of subMenus"
+      [ngTemplateOutlet]="tMenuItem"
+      [ngTemplateOutletContext]="{ pMenuItem: subMenuItem }"
+    >
+    </ng-container>
+  </div>
+</ng-template>

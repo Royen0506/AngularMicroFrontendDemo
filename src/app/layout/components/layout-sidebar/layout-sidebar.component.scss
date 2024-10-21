@@ -1,0 +1,136 @@
+@import "../../../../styles/variables";
+
+:host {
+  ::ng-deep .p-sidebar-left {
+    position: static;
+    width: $sidebarWidth;
+    height: calc(100vh - $toolbarHeight);
+    color: $sidebarColor;
+    background-color: $sidebarBackgroundColor;
+
+    border: 0;
+    box-shadow: none;
+  }
+
+  ::ng-deep .p-sidebar {
+    .p-sidebar-header {
+      padding: 0;
+      display: none;
+
+      .p-sidebar-icon {
+        color: var(--surface-a);
+
+        &:enabled:hover {
+          background: $sidebarHoverBackgroundColor;
+          color: $sidebarHoverFontColor;
+        }
+      }
+    }
+
+    .p-sidebar-content {
+      padding: 1rem 0;
+      height: 100%;
+    }
+  }
+}
+
+.bpaas-layout-sidemenu {
+  button,
+  a {
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    line-height: 2.2rem;
+    padding: 0.25rem 1rem;
+    background-color: $sidebarBackgroundColor;
+    color: var(--surface-a);
+    font-size: 1.1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    word-break: break-word;
+
+    > div {
+      > .pi {
+        padding-right: 0.5rem;
+      }
+    }
+
+    &.category {
+      cursor: auto;
+    }
+
+    &:not(&.category) {
+      cursor: pointer;
+
+      &:enabled:hover {
+        background: $sidebarHoverBackgroundColor;
+      }
+
+      &.bpaas-router-link-active {
+        background: $sidebarActiveBackgroundColor;
+        color: $white;
+      }
+    }
+  }
+
+  a {
+    &:hover {
+      background: $sidebarHoverBackgroundColor;
+      color: $sidebarHoverFontColor;
+    }
+  }
+
+  .bpaas-layout-sidemenu-sub {
+    & button,
+    & a {
+      padding-left: 2.5rem;
+      background-color: $sidebarSubBackgroundColor;
+      color: $sidebarSubFontColor;
+    }
+
+    & a {
+      &:hover {
+        background: $sidebarHoverBackgroundColor;
+        color: $sidebarHoverFontColor;
+      }
+    }
+
+    .bpaas-layout-sidemenu-sub {
+      & button,
+      & a {
+        padding-left: 3.5rem;
+        background-color: $sidebarThirdBackgroundColor;
+        color: $sidebarThirdFontColor;
+      }
+
+      & a {
+        &:hover {
+          background: $sidebarHoverBackgroundColor;
+          color: $sidebarHoverFontColor;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  :host {
+    ::ng-deep .p-sidebar-left {
+      height: 100vh;
+    }
+
+    ::ng-deep .p-sidebar {
+      .p-sidebar-header {
+        display: flex;
+        padding: 0.5rem;
+      }
+
+      .p-sidebar-content {
+        padding: 0;
+      }
+    }
+  }
+}

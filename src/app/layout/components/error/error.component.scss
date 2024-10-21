@@ -1,0 +1,27 @@
+.bpaas-error {
+  background-color: var(--yellow-600);
+  color: var(--surface-a);
+}
+
+.bpaas-exception-title {
+  font-size: 8rem;
+  font-weight: 600;
+}
+
+.bpaas-exception-detail {
+  font-size: 2rem;
+}
+
+::ng-deep .p-button {
+  &.p-button-warning {
+    color: var(--surface-a);
+    background: var(--yellow-500);
+    border: 1px solid var(--yellow-500);
+
+    &:enabled:hover {
+      color: var(--surface-a);
+      background: var(--yellow-700);
+      border: 1px solid var(--yellow-700);
+    }
+  }
+}

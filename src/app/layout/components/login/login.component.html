@@ -1,0 +1,89 @@
+<form [formGroup]="formGroup">
+  <div class="bpaas-login">
+    <div class="card">
+      <div
+        class="flex flex-column align-items-center justify-content-center card-container h-screen"
+      >
+        <p-card class="xl:max-w-25rem md:max-w-25rem sm:max-w-screen">
+          <div class="grid p-fluid" pFocusTrap>
+            <div class="col-12 text-2xl font-medium">Sign in</div>
+            <div class="col-12">
+              <label for="username">帳號</label>
+              <input
+                type="text"
+                pInputText
+                formControlName="username"
+                id="username"
+                [ngClass]="{ 'ng-dirty': formControlInvalid('username') }"
+              />
+              <div *ngIf="formControlInvalid('username')">
+                <small
+                  class="p-error"
+                  *ngIf="formControl('username').errors?.['required']"
+                >
+                  此欄位必須輸入
+                </small>
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="password">密碼</label>
+              <input
+                type="password"
+                pPassword
+                [feedback]="false"
+                formControlName="password"
+                id="password"
+                [ngClass]="{ 'ng-dirty': formControlInvalid('password') }"
+              />
+              <div *ngIf="formControlInvalid('password')">
+                <small
+                  class="p-error"
+                  *ngIf="formControl('password').errors?.['required']"
+                >
+                  此欄位必須輸入
+                </small>
+              </div>
+            </div>
+            <div class="col-12">
+              <button
+                type="button"
+                pButton
+                pRipple
+                label="Sign in"
+                (click)="signIn()"
+              ></button>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- 整個系統的彈出訊息顯示 -->
+<!-- <p-toast
+  position="bottom-right"
+  [breakpoints]="{ '920px': { width: '95%' } }"
+  [preventOpenDuplicates]="true"
+>
+  <ng-template let-message pTemplate="message">
+    <span
+      [class]="
+        'p-toast-message-icon pi' + (message.icon ? ' ' + message.icon : '')
+      "
+      [ngClass]="{
+        'pi-info-circle': message.severity == 'info',
+        'pi-exclamation-triangle': message.severity == 'warn',
+        'pi-times-circle': message.severity == 'error',
+        'pi-check': message.severity == 'success',
+      }"
+    >
+    </span>
+    <div class="p-toast-message-text">
+      <div class="p-toast-summary">{{ message.summary }}</div>
+      <div class="p-toast-detail">
+        {{ message.detail }}
+      </div>
+    </div>
+  </ng-template>
+</p-toast> -->

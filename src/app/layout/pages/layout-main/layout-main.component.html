@@ -1,0 +1,17 @@
+<div class="bpaas-layout-wrapper">
+  <!-- 切換 sidebar step 4 : 事件發出後，去呼叫 sidebar 的 toggleSidebar() -->
+  <app-layout-topbar
+    (sidebarToggled)="tSidebar.toggleSidebar()"
+  ></app-layout-topbar>
+  <app-layout-sidebar
+    #tSidebar
+    [sidebarVisible]="sidebarVisible"
+    class="bpaas-layout-sidebar-container"
+  ></app-layout-sidebar>
+  <div
+    class="bpaas-layout-main-container"
+    [class.bpaas-sidebar-hide]="!tSidebar.sidebarVisible"
+  >
+    <router-outlet></router-outlet>
+  </div>
+</div>

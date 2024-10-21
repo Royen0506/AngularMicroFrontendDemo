@@ -1,0 +1,49 @@
+<div class="bpaas-layout-topbar">
+  <p-toolbar>
+    <div class="p-toolbar-group-left">
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-bars"
+        class="p-button-rounded p-button-text"
+        (click)="toggleSidebar()"
+        id="btn-topbar-toggle-sidebar"
+      ></button>
+      <h1 class="bpaas-layout-topbar-logo">客服系統</h1>
+      <a>
+        <!-- <img src="./assets/images/logo{{ layoutMain.mobileMode ? '-s' : '' }}.png" alt="logo"> -->
+        <!-- <span>123123123</span> -->
+      </a>
+      <p-badge
+        *ngIf="isUat"
+        class="bpaas-environment-label"
+        size="large"
+        severity="danger"
+        value="UAT"
+      ></p-badge>
+    </div>
+
+    <div class="p-toolbar-group-right">
+      <div class="bpaas-toolbar-account" *ngIf="!layoutMain.mobileMode">
+        {{ userDisplay }}
+      </div>
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-user"
+        class="p-button-rounded p-button-text"
+        (click)="tUserMenu.toggle($event)"
+        id="btn-topbar-user"
+      ></button>
+      <p-menu
+        #tUserMenu
+        [popup]="true"
+        [model]="userMenus"
+        styleClass="bpaas-toolbar-menu-sticky"
+        [style]="{ 'white-space': 'nowrap', width: 'auto' }"
+      ></p-menu>
+    </div>
+  </p-toolbar>
+</div>

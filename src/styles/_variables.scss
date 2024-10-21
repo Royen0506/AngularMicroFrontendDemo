@@ -1,0 +1,37 @@
+// 新增顏色變數
+$primaryColor: #424950;
+$secondaryColor: #737d88;
+$activeColor: #cd5d67;
+$gold: #dda15e;
+$ivory: #dadada;
+$goldLight: #d19e5f;
+$secondaryLight: #a7adb4;
+$white: #ffffff;
+$black: #101010;
+
+$fontSize: 13px;
+$backgroundColor: #f2f2f2;
+
+$toolbarHeight: 4rem;
+$toolbarBackgroundColor: var(--surface-0);
+
+$sidebarWidth: 18rem;
+$sidebarColor: var(--surface-0);
+
+$sidebarBackgroundColor: $primaryColor;
+$sidebarFontColor: var(--surface-0);
+
+$sidebarSubBackgroundColor: $secondaryColor;
+$sidebarSubFontColor: var(--surface-0);
+
+$sidebarThirdBackgroundColor: $secondaryColor;
+$sidebarThirdFontColor: $black;
+
+$sidebarHoverBackgroundColor: #cbcbcb;
+$sidebarHoverFontColor: $black;
+
+$sidebarActiveBackgroundColor: $activeColor;
+$sidebarActiveColor: $black;
+$transitionDuration: 0.2s;
+
+$mainPadding: 1.5rem;

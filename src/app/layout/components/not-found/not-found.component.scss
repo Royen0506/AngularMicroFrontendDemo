@@ -1,0 +1,26 @@
+@import '../../../../styles/variables';
+.bpaas-not-found {
+  background-color: $primaryColor;
+  color: $gold;
+}
+
+.bpaas-exception-title {
+  font-size: 8rem;
+  font-weight: 600;
+}
+
+.bpaas-exception-detail {
+  font-size: 2rem;
+}
+
+::ng-deep .bpaas-not-found .p-button {
+  color: $white;
+  background: $activeColor;
+  border: 1px solid $activeColor;
+
+  &:enabled:hover {
+    color: $activeColor;
+    background: $white;
+    border: 1px solid $white;
+  }
+}

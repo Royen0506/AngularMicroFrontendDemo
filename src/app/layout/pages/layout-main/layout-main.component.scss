@@ -1,0 +1,48 @@
+@import '../../../../../src/styles/variables';
+
+.bpaas-layout-sidebar-container {
+  z-index: 999;
+  position: fixed;
+  top: $toolbarHeight;
+  overflow-y: overlay;
+}
+
+.bpaas-layout-main-container {
+  z-index: 998; // 相對 toolbar 1000
+  padding-top: $toolbarHeight;
+  // width: calc(100% - $sidebarWidth - ($mainPadding * 2));
+  width: calc(100% - $sidebarWidth);
+  height: 100vh;
+
+  padding-left: $mainPadding;
+  padding-right: $mainPadding;
+
+  // 這段是把位置先水平往右移
+  transition: all 0.3s;
+  transform: translateX(calc($sidebarWidth));
+
+  &.bpaas-sidebar-hide {
+    transform: translateX(0px);
+    width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .bpaas-layout-sidebar-container {
+    position: fixed;
+    z-index: 1002; // 相對 toolbar 1000
+    top: 0;
+    left: 0;
+    height: 100vh;
+  }
+
+  .bpaas-layout-main-container {
+    transform: translateX(0px);
+    width: 100%;
+
+    &.bpaas-sidebar-hide {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+}

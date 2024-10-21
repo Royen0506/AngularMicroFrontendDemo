@@ -1,0 +1,27 @@
+.bpaas-access-denied {
+  background-color: var(--red-600);
+  color: var(--surface-a);
+}
+
+.bpaas-exception-title {
+  font-size: 8rem;
+  font-weight: 600;
+}
+
+.bpaas-exception-detail {
+  font-size: 2rem;
+}
+
+::ng-deep .p-button {
+  &.p-button-danger {
+    color: var(--surface-a);
+    background: var(--red-500);
+    border: 1px solid var(--red-500);
+
+    &:enabled:hover {
+      color: var(--surface-a);
+      background: var(--red-700);
+      border: 1px solid var(--red-700);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "HOME",
+    "icon": "",
+    "path": "/home",
+    "selected": false
+  },
+  {
+    "name": "HOME2",
+    "icon": "",
+    "path": "/home2",
+    "selected": false
+  }
+]
