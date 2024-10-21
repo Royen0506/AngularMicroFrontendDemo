@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { ButtonList } from '../models/button-list.model';
 import { IdButtonlist } from '../models/id-buttonlist.model';
 import { SidebarMenuRep } from '../../layout/models/sidebar-menu-rep.model';
-import { AuthButtonEnum } from '../../shared/enums/auth-button.enum';
-
+import { AuthButtonEnum } from '@@shared';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +41,6 @@ export class AuthMenuService {
     };
   }
   getIdByUrl(url: string): string {
-    return this.menu.find(element => element.Url === url)?.ModuleId ?? '';
+    return this.menu.find((element) => element.Url === url)?.ModuleId ?? '';
   }
 }

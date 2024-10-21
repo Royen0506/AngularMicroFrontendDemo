@@ -11,8 +11,8 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ScrollTopModule } from 'primeng/scrolltop';
 
-import { LoadingMaskService } from './shared/services/loading-mask.service';
-import { SystemMessageService } from './shared/services/system-message.service';
+import { LoadingMaskService } from '@@shared';
+import { SystemMessageService } from '@@shared';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ import { SystemMessageService } from './shared/services/system-message.service';
     ProgressSpinnerModule,
     ToastModule,
     ConfirmDialogModule,
-    ScrollTopModule
+    ScrollTopModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { ButtonModule } from 'primeng/button';
 
-import { BackDirective } from '../../../shared/directives/back.directive';
+import { BackDirective } from '@@shared';
 
 @Component({
   selector: 'app-not-found',

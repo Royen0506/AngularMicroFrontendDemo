@@ -10,8 +10,8 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 
-import { SystemMessageService } from '../../shared/services/system-message.service';
-import { LoadingMaskService } from '../../shared/services/loading-mask.service';
+import { SystemMessageService } from '@@shared';
+import { LoadingMaskService } from '@@shared';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {

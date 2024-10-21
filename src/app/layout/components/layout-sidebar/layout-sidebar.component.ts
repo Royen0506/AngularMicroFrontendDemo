@@ -8,8 +8,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { SidebarMenu } from '../../models/sidebar-menu.model';
 import { LayoutMainComponent } from '../../pages/layout-main/layout-main.component';
 import { SidebarService } from '../../services/sidebar.service';
-import { StorageService } from '../../../shared/services/storage.service';
-import { SystemLocalStorage } from '../../../shared/enums/system-local-storage.enum';
+import { StorageService } from '@@shared';
+import { SystemLocalStorage } from '@@shared';
 
 @Component({
   selector: 'app-layout-sidebar',

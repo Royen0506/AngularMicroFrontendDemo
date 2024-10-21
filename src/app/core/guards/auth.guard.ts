@@ -1,7 +1,7 @@
 import { SidebarService } from '../../layout/services/sidebar.service';
-import { SystemLocalStorage } from '../../shared/enums/system-local-storage.enum';
+import { SystemLocalStorage } from '@@shared';
 
-import { StorageService } from '../../shared/services/storage.service';
+import { StorageService } from '@@shared';
 import { AuthService } from '../services/auth.service';
 import { Injectable } from '@angular/core';
 import {
@@ -12,7 +12,6 @@ import {
 } from '@angular/router';
 import { Observable, lastValueFrom } from 'rxjs';
 import { AuthMenuService } from '../services/auth-menu.service';
-
 
 @Injectable({
   providedIn: 'root',

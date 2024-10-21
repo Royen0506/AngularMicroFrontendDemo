@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Observable, filter, map, tap, concatMap, of } from 'rxjs';
 
 import { UserProfile } from '../models/user-profile.model';
-import { StorageService } from '../../shared/services/storage.service';
-import { SystemLocalStorage } from '../../shared/enums/system-local-storage.enum';
+import { StorageService } from '@@shared';
+import { SystemLocalStorage } from '@@shared';
 
 @Injectable({
   providedIn: 'root',
@@ -97,7 +97,7 @@ export class AuthService {
       this.httpClient.get<UserProfile>(endpoint);
 
     return observable.pipe(
-      map(userProfile => {
+      map((userProfile) => {
         console.log('do profile userProfile = ' + JSON.stringify(userProfile));
         if (userProfile && userProfile.username) {
           console.log('do profile username');
@@ -151,7 +151,7 @@ export class AuthService {
     return this.httpClient
       .get<{ username: string; password: string }>(endpoint)
       .pipe(
-        map(mockUser => {
+        map((mockUser) => {
           return true;
         })
       );
@@ -166,14 +166,14 @@ export class AuthService {
    */
   manualLogin(username: string, password: string): Observable<boolean> {
     return this.login(username, password).pipe(
-      tap(authResult => console.log('RxJS jwt result = ' + authResult)),
-      filter(authResult => authResult),
-      concatMap(authResult =>
+      tap((authResult) => console.log('RxJS jwt result = ' + authResult)),
+      filter((authResult) => authResult),
+      concatMap((authResult) =>
         this.profile().pipe(
-          tap(profileResult =>
+          tap((profileResult) =>
             console.log('RxJS userProfile result = ' + profileResult)
           ),
-          map(profileResult => {
+          map((profileResult) => {
             if (authResult && profileResult) {
               return true;
             } else {

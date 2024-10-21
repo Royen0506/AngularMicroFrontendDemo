@@ -6,8 +6,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
-import { StorageService } from '../../shared/services/storage.service';
-
+import { StorageService } from '@@shared';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -42,7 +41,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(
-      catchError(error => {
+      catchError((error) => {
         // 呼叫 API 後如果收到 401 錯誤代表 access token 有問題
         this.authService.tokenError = error.status === 401;
         console.log(

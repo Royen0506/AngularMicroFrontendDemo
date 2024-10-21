@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 
-import { BackDirective } from '../../../shared/directives/back.directive';
+import { BackDirective } from '@@shared';
 
 @Component({
   selector: 'app-error',
